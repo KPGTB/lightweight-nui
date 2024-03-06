@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="./libs/FiveM.js"></script>
+    <script src="./libs/Components.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+    <fivem-example />
+
+    <script>
+        registerComponent("example")
+
+        useNui("info", (data) => {
+            Alpine.store("data", data)
+        })
+
+        useNui("toggle", () => {
+            const crr = Alpine.store("open")
+            Alpine.store("open", !crr)
+        })
+
+        document.addEventListener("alpine:init", () => {
+            Alpine.store("open", false)
+            Alpine.store("data", "")
+        })
+    </script>
+</body>
+
+</html>
