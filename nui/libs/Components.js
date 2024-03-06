@@ -1,8 +1,16 @@
 const registerComponent = (name) => {
     getComponentHTML(name).then(html => {
         customElements.define(`fivem-${name}`, class extends HTMLElement {
+            constructor() {
+                super()
+            }
+
             connectedCallback() {
-                this.innerHTML = html
+                let finalHTML = html
+                this.getAttributeNames().forEach(attr => {
+                    finalHTML = finalHTML.replace(`{{${attr}}}`, this.getAttribute(attr))
+                })
+                this.innerHTML = finalHTML
             }
         })
     })

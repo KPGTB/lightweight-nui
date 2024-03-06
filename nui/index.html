@@ -13,10 +13,23 @@
 </head>
 
 <body>
-    <fivem-example />
+
+    <h1>Example Page</h1>
+    <section>
+        <fivem-test x-data x-bind:what="$store.data" />
+    </section>
+    <section>
+        <fivem-test what="Alpine" />
+    </section>
+    <section>
+        <fivem-example custom="data" image="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" />
+    </section>
+
 
     <script>
+        registerComponent("test")
         registerComponent("example")
+
 
         useNui("info", (data) => {
             Alpine.store("data", data)
@@ -29,7 +42,7 @@
 
         document.addEventListener("alpine:init", () => {
             Alpine.store("open", false)
-            Alpine.store("data", "")
+            Alpine.store("data", "yeah!")
         })
     </script>
 </body>
